@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { loginCustomer, saveAuth } from "@/lib/api";
 
@@ -33,36 +34,134 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="text-lg font-bold tracking-tight text-gray-900">
-            SRI HOUSING INFRA
+    <div
+      style={{
+        minHeight: "100vh",
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        overflow: "hidden",
+        fontFamily: "'Georgia', 'Times New Roman', serif",
+      }}
+    >
+      {/* Background image */}
+      <Image
+        src="/intro.png"
+        alt="Sri Housing Infra"
+        fill
+        priority
+        style={{ objectFit: "cover", zIndex: 0 }}
+      />
+
+      {/* Overlay content: logo + tagline on the left */}
+     
+     
+
+      {/* Login card */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          width: "100%",
+          maxWidth: "460px",
+          margin: "0 90px 0 0",
+          background: "#ffffff",
+          borderRadius: "24px",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
+          padding: "40px 40px 32px",
+          fontFamily: "'Helvetica Neue', Arial, sans-serif",
+          marginRight: "280px",
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: "30px",
+            fontWeight: 700,
+            color: "#12352b",
+            textAlign: "center",
+            margin: "0 0 6px",
+          }}
+        >
+          Welcome Back
+        </h2>
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "14px",
+            color: "#6b7280",
+            margin: "0 0 24px",
+          }}
+        >
+          Login to manage your plot bookings
+        </p>
+
+        {error && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "#fdecec",
+              border: "1px solid #f5c2c2",
+              color: "#b3261e",
+              borderRadius: "12px",
+              padding: "12px 16px",
+              marginBottom: "20px",
+              fontSize: "13.5px",
+            }}
+          >
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                background: "#e11d2e",
+                color: "#fff",
+                fontSize: "12px",
+                fontWeight: 700,
+                flexShrink: 0,
+              }}
+            >
+              !
+            </span>
+            {error}
           </div>
-          <div className="text-[10px] text-yellow-700 tracking-widest">
-            • TRUSTED LEGACY •
-          </div>
-        </div>
+        )}
 
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-          <h1 className="text-2xl font-bold text-center mb-1">Welcome Back</h1>
-          <p className="text-sm text-gray-500 text-center mb-6">
-            Login to manage your plot bookings
-          </p>
-
-          {/* Error message */}
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-6 text-sm">
-              ❌ {error}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Email Address
-              </label>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", gap: "18px" }}
+        >
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "13.5px",
+                fontWeight: 600,
+                color: "#12352b",
+                marginBottom: "8px",
+              }}
+            >
+              Email Address
+            </label>
+            <div style={{ position: "relative" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  left: "14px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  color: "#9ca3af",
+                  fontSize: "15px",
+                }}
+              >
+                ✉️
+              </span>
               <input
                 type="email"
                 name="email"
@@ -70,52 +169,198 @@ export default function LoginPage() {
                 onChange={handleChange}
                 placeholder="john@example.com"
                 required
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-shadow"
+                style={{
+                  width: "100%",
+                  boxSizing: "border-box",
+                  padding: "12px 14px 12px 40px",
+                  borderRadius: "10px",
+                  border: "1px solid #d1d5db",
+                  fontSize: "14px",
+                  outline: "none",
+                }}
+                onFocus={(e) =>
+                  (e.target.style.border = "1px solid #12352b")
+                }
+                onBlur={(e) => (e.target.style.border = "1px solid #d1d5db")}
               />
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={form.password}
-                  onChange={handleChange}
-                  placeholder="Enter your password"
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-shadow pr-12"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm"
-                >
-                  {showPassword ? "🙈" : "👁️"}
-                </button>
-              </div>
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "13.5px",
+                fontWeight: 600,
+                color: "#12352b",
+                marginBottom: "8px",
+              }}
+            >
+              Password
+            </label>
+            <div style={{ position: "relative" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  left: "14px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  color: "#9ca3af",
+                  fontSize: "15px",
+                }}
+              >
+                🔒
+              </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                required
+                style={{
+                  width: "100%",
+                  boxSizing: "border-box",
+                  padding: "12px 44px 12px 40px",
+                  borderRadius: "10px",
+                  border: "1px solid #d1d5db",
+                  fontSize: "14px",
+                  outline: "none",
+                }}
+                onFocus={(e) =>
+                  (e.target.style.border = "1px solid #12352b")
+                }
+                onBlur={(e) => (e.target.style.border = "1px solid #d1d5db")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: "absolute",
+                  right: "12px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "15px",
+                  color: "#9ca3af",
+                }}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
             </div>
+            <div style={{ textAlign: "right", marginTop: "8px" }}>
+              <Link
+                href="/forgot-password"
+                style={{
+                  fontSize: "13px",
+                  color: "#12352b",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                }}
+              >
+                Forgot Password?
+              </Link>
+            </div>
+          </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors mt-2"
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              width: "100%",
+              background: loading ? "#3d5c50" : "#12352b",
+              color: "#fff",
+              border: "none",
+              borderRadius: "10px",
+              padding: "14px",
+              fontSize: "15px",
+              fontWeight: 600,
+              cursor: loading ? "not-allowed" : "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              marginTop: "4px",
+              transition: "background 0.2s",
+            }}
+          >
+            {loading ? "Logging in..." : "Login"}
+            {!loading && <span>→</span>}
+          </button>
+        </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Don't have an account?{" "}
-            <Link
-              href="/register"
-              className="text-green-600 font-semibold hover:underline"
-            >
-              Register
-            </Link>
-          </p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            margin: "22px 0",
+          }}
+        >
+          <div style={{ flex: 1, height: "1px", background: "#e5e7eb" }} />
+          <span style={{ fontSize: "12px", color: "#9ca3af" }}>OR</span>
+          <div style={{ flex: 1, height: "1px", background: "#e5e7eb" }} />
+        </div>
+
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "14px",
+            color: "#4b5563",
+            margin: "0 0 20px",
+          }}
+        >
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/register"
+            style={{
+              color: "#166534",
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
+          >
+            Register
+          </Link>
+        </p>
+
+        {/* Footer illustration */}
+        <div style={{ position: "relative", textAlign: "center" }}>
+          <svg
+            viewBox="0 0 400 90"
+            style={{ width: "100%", height: "70px" }}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0,90 Q50,40 100,70 T200,60 T300,75 T400,50 L400,90 Z"
+              fill="#dcefe0"
+            />
+            <path
+              d="M0,90 Q60,55 130,78 T260,65 T400,80 L400,90 Z"
+              fill="#c3e3ca"
+            />
+            <g stroke="#12352b" strokeWidth="2" fill="none">
+              <path d="M170 55 L170 30" />
+              <path d="M160 30 L180 30 L170 15 Z" fill="#12352b" stroke="none" />
+              <rect x="165" y="42" width="10" height="13" fill="#12352b" stroke="none" />
+              <line x1="140" y1="55" x2="140" y2="40" />
+              <circle cx="140" cy="35" r="6" />
+              <line x1="205" y1="55" x2="205" y2="38" />
+              <circle cx="205" cy="32" r="7" />
+            </g>
+          </svg>
+          <div
+            style={{
+              fontSize: "10px",
+              letterSpacing: "2.5px",
+              color: "#12352b",
+              fontWeight: 600,
+              marginTop: "-6px",
+            }}
+          >
+            PLOTS FOR A BETTER TOMORROW
+          </div>
         </div>
       </div>
     </div>
