@@ -12,10 +12,17 @@ import Shell from "@/components/Shell";
    Config
    ────────────────────────────────────────────────────────────── */
 
-const API_BASE = `${process.env.NEXT_PUBLIC_API_URL || ""}/api/customer/payments`;
+const API_ROOT = (
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://api.crazystory.in"
+)
+  .replace(/\/+$/, "")
+  .replace(/\/api$/, "");
+const API_BASE = `${API_ROOT}/api/customer/payments`;
+
 const RAZORPAY_KEY = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "";
 const RAZORPAY_SCRIPT = "https://checkout.razorpay.com/v1/checkout.js";
-const COMPANY_NAME = "Green Valley Plots";
+const COMPANY_NAME = "Genuine Property Developers";
 
 // Adjust these to match the payment_type values your backend accepts
 const PAYMENT_TYPES = [
@@ -46,11 +53,11 @@ const statusStyles = {
 
 function getToken() {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem("customer_token") || localStorage.getItem("token");
+  return localStorage.getItem("auth_token") || localStorage.getItem("token");
 }
 
 async function api(path = "", { method = "GET", body, params } = {}) {
-  const url = new URL(API_BASE + path, window.location.origin);
+  const url = new URL(API_BASE + path);
   if (params) {
     Object.entries(params).forEach(([k, v]) => {
       if (v !== "" && v !== null && v !== undefined) url.searchParams.set(k, v);
@@ -288,9 +295,9 @@ export default function PaymentsPage() {
   const [listLoading, setListLoading] = useState(true);
   const [listError, setListError] = useState("");
 
-  // Projects / plots known from the customer's payments (used for filter + pay form)
-  const [projects, setProjects] = useState({}); // { [id]: { id, title } }
-  const [plots, setPlots] = useState({});       // { [id]: { id, plot_number, project_id } }
+  // Projects / plots known from the customer's payments
+  const [projects, setProjects] = useState({});
+  const [plots, setPlots] = useState({});
 
   // Detail modal
   const [detailId, setDetailId] = useState(null);
@@ -338,7 +345,6 @@ export default function PaymentsPage() {
         to: pg.to || (items.length ? (pg.current_page - 1) * perPage + items.length : 0),
       });
 
-      // Remember projects & plots so the dropdowns stay populated when filtering
       setProjects((prev) => {
         const next = { ...prev };
         items.forEach((p) => p.project && (next[p.project.id] = p.project));
@@ -359,11 +365,7 @@ export default function PaymentsPage() {
 
   useEffect(() => { fetchStats(); }, [fetchStats]);
   useEffect(() => { fetchPayments(); }, [fetchPayments]);
-
-  // Reset to page 1 whenever filters change
   useEffect(() => { setPage(1); }, [status, projectId, search]);
-
-  // Preload Razorpay so checkout opens instantly
   useEffect(() => { loadRazorpay().catch(() => {}); }, []);
 
   /* ── Derived ── */
@@ -378,7 +380,7 @@ export default function PaymentsPage() {
   const totalPaid = pick(stats, ["total_paid", "paid_amount", "total_paid_amount"]);
   const pendingAmount = pick(stats, ["pending_amount", "upcoming_dues", "total_pending"]);
   const balanceAmount = pick(stats, ["balance_amount", "balance"], Math.max(0, Number(totalAmount) - Number(totalPaid)));
-  const totalCount = pick(stats, ["total_payments", "total_count", "total"], meta.total);
+  const totalCount = pick(stats, ["total_payments", "total_count"], meta.total);
   const paidCount = pick(stats, ["paid_count", "paid_payments"], null);
   const pendingCount = pick(stats, ["pending_count", "pending_payments"], null);
   const paidPct = Number(totalAmount) > 0 ? Math.round((Number(totalPaid) / Number(totalAmount)) * 100) : 0;
@@ -677,9 +679,7 @@ export default function PaymentsPage() {
             {/* Pagination */}
             {!listLoading && meta.total > 0 && (
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-neutral-500">
-                <p>
-                  Showing {meta.from}–{meta.to} of {meta.total}
-                </p>
+                <p>Showing {meta.from}–{meta.to} of {meta.total}</p>
                 <div className="flex items-center gap-1">
                   <button
                     disabled={meta.current_page <= 1}
@@ -819,7 +819,6 @@ export default function PaymentsPage() {
 
           {/* CTA */}
           <section className="relative overflow-hidden rounded-2xl bg-red-800 p-5 text-white">
-            <img src="/plot-cta.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
             <div className="relative">
               <h3 className="text-[15px] font-bold leading-snug">
                 Your Dream Plot<br />is Just a Step Away!
