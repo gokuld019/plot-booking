@@ -8,7 +8,7 @@ import Shell from "@/components/Shell";
 
 
 const overview = [
-  { icon: Wallet, tint: "bg-emerald-50 text-emerald-700", label: "Total Investment", value: "₹ 53,98,000", sub: "Across 2 Bookings" },
+  { icon: Wallet, tint: "bg-red-50 text-red-800", label: "Total Investment", value: "₹ 53,98,000", sub: "Across 2 Bookings" },
   { icon: CheckCircle2, tint: "bg-green-50 text-green-600", label: "Total Paid", value: "₹ 21,59,100", sub: "40% of Total" },
   { icon: CalendarDays, tint: "bg-amber-50 text-amber-600", label: "Upcoming Dues", value: "₹ 5,00,000", sub: "1 Payment Due" },
   { icon: FileText, tint: "bg-rose-50 text-rose-500", label: "Balance Amount", value: "₹ 27,38,900", sub: "60% Pending" },
@@ -46,13 +46,13 @@ const summary = [
 export default function PaymentsPage() {
   return (
     <Shell>
-    <div className="grid gap-5 text-[#1c2b23] xl:grid-cols-[1fr_300px]">
+    <div className="grid gap-5 text-[#1f1f1f] xl:grid-cols-[1fr_300px]">
       {/* Left column */}
       <div className="space-y-5">
         <section className="rounded-2xl border border-black/5 bg-white p-5">
           <div className="mb-1 flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-lg bg-emerald-50">
-              <Wallet className="h-4 w-4 text-emerald-700" />
+            <div className="grid h-8 w-8 place-items-center rounded-lg bg-red-50">
+              <Wallet className="h-4 w-4 text-red-800" />
             </div>
             <h2 className="text-xl font-bold">Payments</h2>
           </div>
@@ -86,7 +86,7 @@ export default function PaymentsPage() {
                 <p className="text-xs text-neutral-500">Next payment of ₹ 5,00,000 is due on 12 Jun 2024</p>
               </div>
             </div>
-            <button className="rounded-lg bg-[#173d2c] px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0f2b1e]">
+            <button className="rounded-lg bg-red-800 px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-red-900">
               Pay Now
             </button>
           </div>
@@ -129,10 +129,10 @@ export default function PaymentsPage() {
                     </td>
                     <td className="px-4 py-3">
                       {r.action === "receipt" && (
-                        <a href="#" className="text-[13px] font-medium text-emerald-800">View Receipt</a>
+                        <a href="#" className="text-[13px] font-medium text-red-800">View Receipt</a>
                       )}
                       {r.action === "pay" && (
-                        <button className="rounded-lg border border-emerald-800/30 px-5 py-1.5 text-[13px] font-semibold text-emerald-900 transition hover:bg-emerald-50">
+                        <button className="rounded-lg border border-red-800/30 px-5 py-1.5 text-[13px] font-semibold text-red-800 transition hover:bg-red-50">
                           Pay Now
                         </button>
                       )}
@@ -174,7 +174,7 @@ export default function PaymentsPage() {
         <section className="rounded-2xl border border-black/5 bg-white p-5">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="font-semibold">Recent Transactions</h3>
-            <a href="#" className="flex items-center gap-1 text-sm font-medium text-emerald-800">
+            <a href="#" className="flex items-center gap-1 text-sm font-medium text-red-800">
               View All Transactions <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -212,7 +212,7 @@ export default function PaymentsPage() {
                         </span>
                       </td>
                       <td className="px-4 py-3">
-                        <button className="text-neutral-400 transition hover:text-emerald-800">
+                        <button className="text-neutral-400 transition hover:text-red-800">
                           <Download className="h-4 w-4" />
                         </button>
                       </td>
@@ -230,7 +230,7 @@ export default function PaymentsPage() {
         <section className="rounded-2xl border border-black/5 bg-white p-5">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="font-bold">Upcoming Payment</h3>
-            <Calendar className="h-4 w-4 text-emerald-700" />
+            <Calendar className="h-4 w-4 text-red-800" />
           </div>
 
           <div className="rounded-xl bg-neutral-50 p-4">
@@ -254,7 +254,7 @@ export default function PaymentsPage() {
             </div>
           </dl>
 
-          <button className="mt-5 w-full rounded-lg bg-[#173d2c] py-3 text-sm font-semibold text-white transition hover:bg-[#0f2b1e]">
+          <button className="mt-5 w-full rounded-lg bg-red-800 py-3 text-sm font-semibold text-white transition hover:bg-red-900">
             Pay Now
           </button>
           <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-black/10 py-3 text-sm font-semibold transition hover:bg-neutral-50">
@@ -277,7 +277,7 @@ export default function PaymentsPage() {
           </button>
         </section>
 
-        <section className="relative overflow-hidden rounded-2xl bg-[#173d2c] p-5 text-white">
+        <section className="relative overflow-hidden rounded-2xl bg-red-800 p-5 text-white">
           <img src="/plot-cta.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
           <div className="relative">
             <h3 className="text-[15px] font-bold leading-snug">
@@ -286,7 +286,7 @@ export default function PaymentsPage() {
             <p className="mt-2 text-xs text-white/70">
               Secure your future with hassle-free payments.
             </p>
-            <button className="mt-16 flex items-center gap-2 rounded-lg bg-[#0f2b1e]/80 px-5 py-2.5 text-sm font-semibold backdrop-blur transition hover:bg-[#0f2b1e]">
+            <button className="mt-16 flex items-center gap-2 rounded-lg bg-red-900/80 px-5 py-2.5 text-sm font-semibold backdrop-blur transition hover:bg-red-900">
               Explore Projects <ArrowRight className="h-4 w-4" />
             </button>
           </div>

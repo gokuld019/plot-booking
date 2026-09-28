@@ -49,14 +49,14 @@ const WHY_US = [
 ];
 
 const STAT_CONFIG = [
-  { key: "total_projects", icon: Home, label: "Total Projects", sub: "Across all cities", bg: "bg-green-100", color: "text-green-700" },
+  { key: "total_projects", icon: Home, label: "Total Projects", sub: "Across all cities", bg: "bg-red-100", color: "text-red-700" },
   { key: "available_plots", icon: Building2, label: "Available Plots", sub: "Book your choice", bg: "bg-yellow-100", color: "text-yellow-700" },
   { key: "happy_customers", icon: Users, label: "Happy Customers", sub: "Trust our legacy", bg: "bg-blue-100", color: "text-blue-700" },
-  { key: "ongoing_projects", icon: HardHat, label: "Ongoing Projects", sub: "High Appreciation", bg: "bg-green-100", color: "text-green-700" },
+  { key: "ongoing_projects", icon: HardHat, label: "Ongoing Projects", sub: "High Appreciation", bg: "bg-red-100", color: "text-red-700" },
 ];
 
 const TAG_COLORS = {
-  "New Launch": "bg-green-600",
+  "New Launch": "bg-red-700",
   "Premium": "bg-yellow-600",
   "Best Seller": "bg-purple-600",
   "Upcoming": "bg-blue-600",
@@ -162,11 +162,11 @@ export default function DashboardPage() {
         {(p.display_price || p.price_range?.price_per_sqft || p.price_per_sqft) && (
           <div className="text-xs text-gray-500 mb-3">
             {p.display_price ? (
-              <b className="text-green-600 text-sm">{p.display_price}</b>
+              <b className="text-red-700 text-sm">{p.display_price}</b>
             ) : (
               <>
                 Plots from{" "}
-                <b className="text-green-600 text-sm">
+                <b className="text-red-700 text-sm">
                   ₹{Number(p.price_range?.price_per_sqft || p.price_per_sqft).toLocaleString()} / Sq.Ft
                 </b>
               </>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
         )}
         <Link
           href={`/projects/${p.id}`}
-          className="block w-full text-center border border-green-700 text-green-700 hover:bg-green-50 py-2 rounded-lg text-[13px] font-semibold transition-colors"
+          className="block w-full text-center border border-red-700 text-red-700 hover:bg-red-50 py-2 rounded-lg text-[13px] font-semibold transition-colors"
         >
           View Details
         </Link>
@@ -206,12 +206,12 @@ export default function DashboardPage() {
             className="relative rounded-2xl overflow-hidden min-h-[200px] flex items-center p-8 bg-cover bg-center"
             style={{
               backgroundImage:
-                "linear-gradient(120deg, rgba(240,245,236,0.9), rgba(232,240,224,0.85)), url('https://images.unsplash.com/photo-1592595896616-c37162298647?w=1200')",
+                "linear-gradient(120deg, rgba(253,243,242,0.9), rgba(250,232,230,0.85)), url('https://images.unsplash.com/photo-1592595896616-c37162298647?w=1200')",
             }}
           >
             <div>
               <h1 className="text-3xl font-bold mb-3">
-                Find Your <span className="text-green-600">Perfect Plot</span>
+                Find Your <span className="text-red-700">Perfect Plot</span>
               </h1>
               <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                 Premium plots. Prime locations.
@@ -220,7 +220,7 @@ export default function DashboardPage() {
               </p>
               <Link
                 href="/projects"
-                className="inline-block bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+                className="inline-block bg-red-800 hover:bg-red-800 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"
               >
                 Explore Projects →
               </Link>
@@ -247,7 +247,7 @@ export default function DashboardPage() {
           {/* Projects header */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-bold">Explore Our Projects</h2>
-            <Link href="/projects" className="text-sm text-green-600 font-semibold">
+            <Link href="/projects" className="text-sm text-red-700 font-semibold">
               View All Projects →
             </Link>
           </div>
@@ -276,7 +276,7 @@ export default function DashboardPage() {
                 return (
                   <div key={w.label} className="text-center">
                     <div className="flex justify-center mb-2">
-                      <Icon size={20} className="text-green-700" strokeWidth={1.75} />
+                      <Icon size={20} className="text-red-700" strokeWidth={1.75} />
                     </div>
                     <div className="text-xs font-semibold mb-1">{w.label}</div>
                     <div className="text-[10px] text-gray-400 leading-tight">{w.sub}</div>
@@ -337,10 +337,10 @@ export default function DashboardPage() {
           </div>
 
           {/* Promo Box */}
-          <div className="bg-gradient-to-br from-red-900 to-red-800 rounded-xl p-5 text-white">
+          <div className="bg-gradient-to-br from-red-800 to-red-800 rounded-xl p-5 text-white">
             <div className="font-bold mb-1.5">Own Your Dream Plot</div>
             <div className="text-xs opacity-85 mb-4">Easy booking. Secure investment. Bright future.</div>
-            <button className="bg-white text-red-900 px-4 py-2 rounded-lg text-[13px] font-semibold hover:bg-gray-100 transition-colors">
+            <button className="bg-white text-red-700 px-4 py-2 rounded-lg text-[13px] font-semibold hover:bg-gray-100 transition-colors">
               Book a Site Visit →
             </button>
           </div>
@@ -349,7 +349,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-xl p-5 border border-gray-200">
             <div className="flex justify-between items-center mb-3">
               <h3 className="text-sm font-bold">Recent Bookings</h3>
-              <Link href="/bookings" className="text-xs text-green-600">View All</Link>
+              <Link href="/bookings" className="text-xs text-red-700">View All</Link>
             </div>
             {loadingStats ? (
               <div className="text-xs text-gray-400 text-center py-4 border-t border-gray-100">

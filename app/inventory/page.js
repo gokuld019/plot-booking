@@ -11,8 +11,8 @@ import Shell from "@/components/Shell";
 
 
 const stats = [
-  { icon: LayoutGrid, tint: "bg-emerald-50 text-emerald-700", label: "Total Plots", value: "342" },
-  { icon: Building2, tint: "bg-green-50 text-green-600", label: "Available", value: "178" },
+  { icon: LayoutGrid, tint: "bg-red-50 text-red-800", label: "Total Plots", value: "342" },
+  { icon: Building2, tint: "bg-red-50 text-red-800", label: "Available", value: "178" },
   { icon: ClipboardList, tint: "bg-amber-50 text-amber-600", label: "Booked", value: "120" },
   { icon: PauseCircle, tint: "bg-violet-50 text-violet-600", label: "On Hold", value: "44" },
 ];
@@ -72,7 +72,7 @@ export default function InventoryPage() {
 
   return (
     <Shell>
-    <div className="grid gap-5 text-[#1c2b23] xl:grid-cols-[1fr_280px]">
+    <div className="grid gap-5 text-[#1f1f1f] xl:grid-cols-[1fr_280px]">
       {/* Left column */}
       <div className="space-y-5">
         <section className="rounded-2xl border border-black/5 bg-white p-5">
@@ -80,7 +80,7 @@ export default function InventoryPage() {
           <div className="flex flex-wrap items-center justify-between gap-5">
             <div>
               <h2 className="flex items-center gap-2 text-xl font-bold">
-                Plot Inventory <Sprout className="h-5 w-5 text-emerald-600" />
+                Plot Inventory <Sprout className="h-5 w-5 text-red-800" />
               </h2>
               <p className="text-sm text-neutral-500">Choose from 342 premium plots across our projects.</p>
             </div>
@@ -104,7 +104,7 @@ export default function InventoryPage() {
             <div className="relative min-w-[220px] flex-1">
               <input
                 placeholder="Search by project, plot no. or keyword..."
-                className="h-10 w-full rounded-lg border border-black/10 pl-4 pr-10 text-sm outline-none focus:border-emerald-700/40"
+                className="h-10 w-full rounded-lg border border-black/10 pl-4 pr-10 text-sm outline-none focus:border-red-800/40"
               />
               <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
             </div>
@@ -149,7 +149,7 @@ export default function InventoryPage() {
               <button
                 onClick={() => setView("map")}
                 className={`flex items-center gap-2 rounded-md px-4 py-2 text-[13px] font-medium transition ${
-                  view === "map" ? "bg-[#173d2c] text-white" : "text-neutral-500"
+                  view === "map" ? "bg-red-800 text-white" : "text-neutral-500"
                 }`}
               >
                 <Map className="h-4 w-4" /> Map View
@@ -160,7 +160,7 @@ export default function InventoryPage() {
           {/* Site map */}
           <div className="relative overflow-hidden rounded-xl border border-black/5">
             <img src="/site-map-bg.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-[#1f3a1f]/20" />
+            <div className="absolute inset-0 bg-black/20" />
 
             {/* Legend */}
             <div className="absolute left-4 top-4 z-10 space-y-1.5 rounded-lg bg-white/95 p-3 shadow-sm">
@@ -240,7 +240,7 @@ export default function InventoryPage() {
                     </td>
                     <td className="px-4 py-3 font-medium">{r.price}</td>
                     <td className="px-4 py-3">
-                      <button className="rounded-lg border border-emerald-800/25 px-4 py-1.5 text-[12px] font-semibold text-emerald-900 transition hover:bg-emerald-50">
+                      <button className="rounded-lg border border-red-800/30 px-4 py-1.5 text-[12px] font-semibold text-red-800 transition hover:bg-red-50">
                         View Details
                       </button>
                     </td>
@@ -261,7 +261,7 @@ export default function InventoryPage() {
                 <button
                   key={p}
                   className={`h-9 w-9 rounded-lg text-sm font-medium transition ${
-                    p === 1 ? "bg-[#4b7c2f] text-white" : "border border-black/10 hover:bg-neutral-50"
+                    p === 1 ? "bg-red-800 text-white" : "border border-black/10 hover:bg-neutral-50"
                   }`}
                 >
                   {p}
@@ -285,7 +285,7 @@ export default function InventoryPage() {
               <h3 className="font-bold">Hi Priya! 👋</h3>
               <p className="mt-1 text-xs text-neutral-500">Manage your bookings and stay updated.</p>
             </div>
-            <Sprout className="h-8 w-8 shrink-0 text-emerald-500" strokeWidth={1.4} />
+            <Sprout className="h-8 w-8 shrink-0 text-red-800" strokeWidth={1.4} />
           </div>
 
           <ul className="mt-4 space-y-1">
@@ -307,7 +307,7 @@ export default function InventoryPage() {
         </section>
 
         {/* CTA */}
-        <section className="relative overflow-hidden rounded-2xl bg-[#173d2c] p-5 text-white">
+        <section className="relative overflow-hidden rounded-2xl bg-red-800 p-5 text-white">
           <img src="/plot-cta.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
           <div className="relative">
             <h3 className="font-bold">Own Your Dream Plot</h3>
@@ -336,7 +336,7 @@ export default function InventoryPage() {
               </div>
             ))}
           </div>
-          <button className="mt-4 w-full rounded-lg bg-[#173d2c] py-3 text-sm font-semibold text-white transition hover:bg-[#0f2b1e]">
+          <button className="mt-4 w-full rounded-lg bg-red-800 py-3 text-sm font-semibold text-white transition hover:bg-red-900">
             Explore All Projects
           </button>
         </section>

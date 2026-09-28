@@ -180,14 +180,14 @@ export default function SupportPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Chat with Us */}
               <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col items-center text-center">
-                <div className="w-11 h-11 rounded-full bg-green-50 flex items-center justify-center mb-3">
-                  <MessageCircle size={20} className="text-green-600" strokeWidth={1.75} />
+                <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center mb-3">
+                  <MessageCircle size={20} className="text-red-800" strokeWidth={1.75} />
                 </div>
                 <div className="font-bold text-[15px] mb-1.5">Chat with Us</div>
                 <div className="text-xs text-gray-400 mb-4 leading-relaxed">
                   Chat live with our support executive.
                 </div>
-                <button className="w-full bg-[#1B2B1B] hover:bg-[#263d26] text-white py-2.5 rounded-lg text-[13px] font-semibold transition-colors mb-2">
+                <button className="w-full bg-red-800 hover:bg-red-900 text-white py-2.5 rounded-lg text-[13px] font-semibold transition-colors mb-2">
                   Start Chat
                 </button>
                 <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
@@ -198,8 +198,8 @@ export default function SupportPage() {
 
               {/* Call Us */}
               <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col items-center text-center">
-                <div className="w-11 h-11 rounded-full bg-green-50 flex items-center justify-center mb-3">
-                  <Phone size={20} className="text-green-600" strokeWidth={1.75} />
+                <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center mb-3">
+                  <Phone size={20} className="text-red-800" strokeWidth={1.75} />
                 </div>
                 <div className="font-bold text-[15px] mb-1.5">Call Us</div>
                 <div className="text-xs text-gray-400 mb-4 leading-relaxed">
@@ -219,8 +219,8 @@ export default function SupportPage() {
 
               {/* Email Us */}
               <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col items-center text-center">
-                <div className="w-11 h-11 rounded-full bg-green-50 flex items-center justify-center mb-3">
-                  <Mail size={20} className="text-green-600" strokeWidth={1.75} />
+                <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center mb-3">
+                  <Mail size={20} className="text-red-800" strokeWidth={1.75} />
                 </div>
                 <div className="font-bold text-[15px] mb-1.5">Email Us</div>
                 <div className="text-xs text-gray-400 mb-4 leading-relaxed">
@@ -240,8 +240,8 @@ export default function SupportPage() {
 
               {/* Raise a Ticket */}
               <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col items-center text-center">
-                <div className="w-11 h-11 rounded-full bg-green-50 flex items-center justify-center mb-3">
-                  <FileText size={20} className="text-green-600" strokeWidth={1.75} />
+                <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center mb-3">
+                  <FileText size={20} className="text-red-800" strokeWidth={1.75} />
                 </div>
                 <div className="font-bold text-[15px] mb-1.5">Raise a Ticket</div>
                 <div className="text-xs text-gray-400 mb-4 leading-relaxed">
@@ -262,7 +262,7 @@ export default function SupportPage() {
           <div className="mt-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold">Frequently Asked Questions</h2>
-              <Link href="/support/faqs" className="text-sm text-green-600 font-semibold flex items-center gap-1">
+              <Link href="/support/faqs" className="text-sm text-red-800 font-semibold flex items-center gap-1">
                 View All FAQs <ArrowRight size={14} />
               </Link>
             </div>
@@ -306,7 +306,7 @@ export default function SupportPage() {
                 </div>
               </div>
             </div>
-            <button className="bg-[#1B2B1B] hover:bg-[#263d26] text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-colors flex items-center gap-2 whitespace-nowrap">
+            <button className="bg-red-800 hover:bg-red-900 text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-colors flex items-center gap-2 whitespace-nowrap">
               Talk to an Expert <ArrowRight size={14} />
             </button>
           </div>
@@ -341,7 +341,7 @@ export default function SupportPage() {
           <div className="bg-white rounded-xl p-5 border border-gray-200">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold">My Recent Tickets</h3>
-              <Link href="/support/tickets" className="text-xs text-green-600 font-semibold flex items-center gap-1">
+              <Link href="/support/tickets" className="text-xs text-red-800 font-semibold flex items-center gap-1">
                 View All <ArrowRight size={12} />
               </Link>
             </div>
@@ -392,8 +392,8 @@ export default function SupportPage() {
                   href="#"
                   className="flex items-center gap-3 py-2.5 border-t border-gray-100 first:border-t-0 hover:bg-gray-50 -mx-5 px-5 transition-colors"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
-                    <Icon size={16} className="text-green-700" strokeWidth={1.75} />
+                  <div className="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                    <Icon size={16} className="text-red-800" strokeWidth={1.75} />
                   </div>
                   <div>
                     <div className="text-[13px] font-semibold">{r.label}</div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/lib/auth";
+import BrandLogo from "@/components/BrandLogo";
 import {
   LayoutDashboard,
   Building2,
@@ -15,12 +16,14 @@ import {
   Bell,
   Search,
   LogOut,
-  User,
   Phone,
   Mail,
   Users,
-  Home,
 } from "lucide-react";
+
+// Brand colours (same as the dashboard)
+const RED = "#b3261e";
+const RED_DARK = "#8c1c16";
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -29,7 +32,7 @@ const NAV_ITEMS = [
   { label: "Bookings", href: "/bookings", icon: ClipboardList },
   { label: "My Documents", href: "/documents", icon: FileText },
   { label: "Payments", href: "/payments", icon: CreditCard },
-  { label: "Offers & Benefits", href: "/offers", icon: Settings },
+  // { label: "Offers & Benefits", href: "/offers", icon: Settings },
   { label: "Support", href: "/support", icon: HelpCircle },
 ];
 
@@ -47,6 +50,13 @@ export default function Shell({ children }) {
     return "Good evening";
   }
 
+  // Active when on the page itself or a page inside it (e.g. /projects/1 under Our Projects)
+  function isActive(href) {
+    if (pathname === href) return true;
+    if (href === "/allprojects" && pathname?.startsWith("/projects")) return true;
+    return pathname?.startsWith(`${href}/`);
+  }
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
@@ -59,27 +69,30 @@ export default function Shell({ children }) {
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <aside className="w-64 flex-shrink-0 bg-white border-r border-gray-200 p-4 flex flex-col sticky top-0 h-screen overflow-y-auto">
+        {/* Company logo — the image file is public/logo.png */}
         <div className="mb-8 pl-1">
-          <div className="text-[13px] font-bold tracking-tight text-gray-900 leading-tight whitespace-nowrap flex items-center gap-2">
-            <Home className="w-4 h-4 text-green-700" />
-            SRI HOUSING INFRA
-          </div>
-          <div className="text-[9px] text-yellow-700 tracking-widest mt-0.5">• TRUSTED LEGACY •</div>
+          <BrandLogo height={70} />
         </div>
 
         <nav className="flex flex-col gap-1">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
+            const active = isActive(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                  pathname === item.href
-                    ? "bg-green-50 text-green-700 font-semibold"
-                    : "text-gray-600 hover:bg-gray-100"
+                className={`relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                  active ? "font-semibold" : "text-gray-600 hover:bg-gray-100"
                 }`}
+                style={active ? { background: "#fdeceb", color: RED } : undefined}
               >
+                {active && (
+                  <span
+                    className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r"
+                    style={{ background: RED }}
+                  />
+                )}
                 <Icon className="w-4 h-4" />
                 {item.label}
               </Link>
@@ -87,23 +100,27 @@ export default function Shell({ children }) {
           })}
         </nav>
 
+        {/* Need Help — red instead of orange */}
         <div className="mt-auto pt-4">
-          <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 relative overflow-hidden">
+          <div
+            className="rounded-xl p-4 relative overflow-hidden border"
+            style={{ background: "#fdf1f0", borderColor: "#f6d3cf" }}
+          >
             <div className="text-sm font-semibold mb-1 flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-orange-600" />
+              <HelpCircle className="w-4 h-4" style={{ color: RED }} />
               Need Help?
             </div>
             <div className="text-xs text-gray-500 mb-3">We're here to assist you</div>
             <div className="text-xs text-gray-600 mb-1 flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-3.5 h-3.5" style={{ color: RED }} />
               +91 76677 77737
             </div>
             <div className="text-xs text-gray-600 mb-4 flex items-center gap-1.5">
-              <Mail className="w-3.5 h-3.5" />
+              <Mail className="w-3.5 h-3.5" style={{ color: RED }} />
               support@srihousinginfra.com
             </div>
             <div className="text-4xl text-center flex justify-center">
-              <Users className="w-10 h-10 text-orange-400" />
+              <Users className="w-10 h-10" style={{ color: RED, opacity: 0.8 }} />
             </div>
           </div>
         </div>
@@ -139,19 +156,26 @@ export default function Shell({ children }) {
           <div className="flex items-center gap-4 flex-shrink-0">
             <div className="relative w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
               <Bell className="w-4 h-4 text-gray-600" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-semibold">
+              <span
+                className="absolute -top-1 -right-1 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-semibold"
+                style={{ background: RED }}
+              >
                 3
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-orange-200 text-orange-800 font-semibold flex items-center justify-center overflow-hidden">
+              <div
+                className="w-9 h-9 rounded-full font-semibold flex items-center justify-center overflow-hidden"
+                style={{ background: "#fdeceb", color: RED_DARK }}
+              >
                 {userName.charAt(0)}
               </div>
               <span className="text-sm font-medium hidden sm:block">{userName}</span>
             </div>
             <button
               onClick={logout}
-              className="text-xs text-red-500 hover:text-red-700 font-medium px-2 py-1 rounded hover:bg-red-50 transition-colors flex items-center gap-1.5"
+              className="text-xs font-medium px-2 py-1 rounded hover:bg-red-50 transition-colors flex items-center gap-1.5"
+              style={{ color: RED }}
             >
               <LogOut className="w-3.5 h-3.5" />
               Logout
