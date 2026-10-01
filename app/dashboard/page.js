@@ -203,12 +203,11 @@ export default function DashboardPage() {
         <div>
           {/* Hero */}
           <div
-            className="relative rounded-2xl overflow-hidden min-h-[200px] flex items-center p-8 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(120deg, rgba(253,243,242,0.9), rgba(250,232,230,0.85)), url('https://images.unsplash.com/photo-1592595896616-c37162298647?w=1200')",
-            }}
-          >
+  className="relative rounded-2xl overflow-hidden min-h-[200px] flex items-center p-8 bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/home.jpeg')",
+  }}
+>
             <div>
               <h1 className="text-3xl font-bold mb-3">
                 Find Your <span className="text-red-700">Perfect Plot</span>
@@ -287,7 +286,7 @@ export default function DashboardPage() {
           </div>
 
           {/* All Projects Section */}
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-bold">All Projects</h2>
               <span className="text-xs text-gray-400">
@@ -307,7 +306,7 @@ export default function DashboardPage() {
                 No projects available
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
         {/* RIGHT COLUMN */}

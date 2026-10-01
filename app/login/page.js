@@ -42,21 +42,18 @@ export default function LoginPage() {
         alignItems: "center",
         justifyContent: "flex-end",
         overflow: "hidden",
+        background: "#f9fafb",
         fontFamily: "'Georgia', 'Times New Roman', serif",
       }}
     >
       {/* Background image */}
       <Image
-        src="/intro.png"
+        src="/intro1.jpeg"
         alt="Sri Housing Infra"
         fill
         priority
-        style={{ objectFit: "cover", zIndex: 0 }}
+        style={{ objectFit: "contain", objectPosition: "center", zIndex: 0 }}
       />
-
-      {/* Overlay content: logo + tagline on the left */}
-     
-     
 
       {/* Login card */}
       <div
@@ -79,7 +76,7 @@ export default function LoginPage() {
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "30px",
             fontWeight: 700,
-            color: "#12352b",
+            color: "#231F20",
             textAlign: "center",
             margin: "0 0 6px",
           }}
@@ -90,7 +87,7 @@ export default function LoginPage() {
           style={{
             textAlign: "center",
             fontSize: "14px",
-            color: "#6b7280",
+            color: "#6B6B6B",
             margin: "0 0 24px",
           }}
         >
@@ -120,7 +117,7 @@ export default function LoginPage() {
                 width: "20px",
                 height: "20px",
                 borderRadius: "50%",
-                background: "#e11d2e",
+                background: "#991B1B",
                 color: "#fff",
                 fontSize: "12px",
                 fontWeight: 700,
@@ -143,7 +140,7 @@ export default function LoginPage() {
                 display: "block",
                 fontSize: "13.5px",
                 fontWeight: 600,
-                color: "#12352b",
+                color: "#231F20",
                 marginBottom: "8px",
               }}
             >
@@ -179,7 +176,7 @@ export default function LoginPage() {
                   outline: "none",
                 }}
                 onFocus={(e) =>
-                  (e.target.style.border = "1px solid #12352b")
+                  (e.target.style.border = "1px solid #991B1B")
                 }
                 onBlur={(e) => (e.target.style.border = "1px solid #d1d5db")}
               />
@@ -192,7 +189,7 @@ export default function LoginPage() {
                 display: "block",
                 fontSize: "13.5px",
                 fontWeight: 600,
-                color: "#12352b",
+                color: "#231F20",
                 marginBottom: "8px",
               }}
             >
@@ -228,7 +225,7 @@ export default function LoginPage() {
                   outline: "none",
                 }}
                 onFocus={(e) =>
-                  (e.target.style.border = "1px solid #12352b")
+                  (e.target.style.border = "1px solid #991B1B")
                 }
                 onBlur={(e) => (e.target.style.border = "1px solid #d1d5db")}
               />
@@ -255,7 +252,7 @@ export default function LoginPage() {
                 href="/forgot-password"
                 style={{
                   fontSize: "13px",
-                  color: "#12352b",
+                  color: "#991B1B",
                   fontWeight: 600,
                   textDecoration: "none",
                 }}
@@ -270,7 +267,7 @@ export default function LoginPage() {
             disabled={loading}
             style={{
               width: "100%",
-              background: loading ? "#3d5c50" : "#12352b",
+              background: loading ? "#C25B5B" : "#991B1B",
               color: "#fff",
               border: "none",
               borderRadius: "10px",
@@ -284,6 +281,12 @@ export default function LoginPage() {
               gap: "8px",
               marginTop: "4px",
               transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              if (!loading) e.currentTarget.style.background = "#7F1D1D";
+            }}
+            onMouseLeave={(e) => {
+              if (!loading) e.currentTarget.style.background = "#991B1B";
             }}
           >
             {loading ? "Logging in..." : "Login"}
@@ -316,7 +319,7 @@ export default function LoginPage() {
           <Link
             href="/register"
             style={{
-              color: "#166534",
+              color: "#991B1B",
               fontWeight: 700,
               textDecoration: "none",
             }}
@@ -334,16 +337,16 @@ export default function LoginPage() {
           >
             <path
               d="M0,90 Q50,40 100,70 T200,60 T300,75 T400,50 L400,90 Z"
-              fill="#dcefe0"
+              fill="#fee2e2"
             />
             <path
               d="M0,90 Q60,55 130,78 T260,65 T400,80 L400,90 Z"
-              fill="#c3e3ca"
+              fill="#fecaca"
             />
-            <g stroke="#12352b" strokeWidth="2" fill="none">
+            <g stroke="#231F20" strokeWidth="2" fill="none">
               <path d="M170 55 L170 30" />
-              <path d="M160 30 L180 30 L170 15 Z" fill="#12352b" stroke="none" />
-              <rect x="165" y="42" width="10" height="13" fill="#12352b" stroke="none" />
+              <path d="M160 30 L180 30 L170 15 Z" fill="#231F20" stroke="none" />
+              <rect x="165" y="42" width="10" height="13" fill="#231F20" stroke="none" />
               <line x1="140" y1="55" x2="140" y2="40" />
               <circle cx="140" cy="35" r="6" />
               <line x1="205" y1="55" x2="205" y2="38" />
@@ -354,7 +357,7 @@ export default function LoginPage() {
             style={{
               fontSize: "10px",
               letterSpacing: "2.5px",
-              color: "#12352b",
+              color: "#231F20",
               fontWeight: 600,
               marginTop: "-6px",
             }}
